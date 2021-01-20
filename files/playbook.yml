@@ -1,0 +1,33 @@
+---
+- name: install and configure web server
+  hosts: all
+
+  tasks:
+  - name: Installs nginx web server
+    apt: 
+      pkg: nginx 
+      state: present 
+      update_cache: true
+    notify:
+    - start nginx
+    become: true
+
+  - name: Upload default index.html to the web server
+    copy:
+      src: files/index.html
+      dest: /var/www/html/index.html
+      mode: '0644'
+    become: true
+
+#  - name: restart nginx
+#    service:
+#      name: nginx
+#      state: restarted
+#    become: true
+
+  handlers:
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+...

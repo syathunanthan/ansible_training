@@ -1,0 +1,10 @@
+---
+- name: install and configure web server
+  hosts: all
+
+  tasks:
+
+  - name: 
+  become: true
+
+...
