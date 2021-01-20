@@ -3,8 +3,11 @@
   hosts: all
 
   tasks:
-
-  - name: 
-  become: true
+  - name:
+    apt:
+      pkg: nginx
+      state: present
+      update_cache: true
+    become: true
 
 ...
